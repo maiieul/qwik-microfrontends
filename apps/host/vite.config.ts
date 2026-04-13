@@ -1,6 +1,5 @@
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { qwikVite } from '@builder.io/qwik/optimizer';
-import { qwikNxVite } from 'qwik-nx/plugins';
 import { ServerOptions, defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { remotes } from '../../shared/remotes';
@@ -10,9 +9,9 @@ export default defineConfig(({ mode }) => {
   const isDev = mode !== 'production';
 
   return {
+    root: __dirname,
     cacheDir: '../../node_modules/.vite/apps/host',
     plugins: [
-      qwikNxVite(),
       qwikCity(),
       qwikVite({
         client: {

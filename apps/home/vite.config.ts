@@ -1,13 +1,12 @@
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { qwikVite } from '@builder.io/qwik/optimizer';
-import { qwikNxVite } from 'qwik-nx/plugins';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
+  root: __dirname,
   cacheDir: '../../node_modules/.vite/apps/home',
   plugins: [
-    qwikNxVite(),
     qwikCity({ basePathname: '/home/' } as any),
     qwikVite({
       client: {

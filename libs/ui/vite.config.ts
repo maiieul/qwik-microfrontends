@@ -1,12 +1,11 @@
 import { qwikVite } from '@builder.io/qwik/optimizer';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vite';
-
-import { qwikNxVite } from 'qwik-nx/plugins';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
+  root: __dirname,
   cacheDir: '../../node_modules/.vite/libs/ui',
-  plugins: [qwikNxVite(), qwikVite(), tsconfigPaths({ root: '../../' })],
+  plugins: [qwikVite(), tsconfigPaths({ root: '../../' })],
 
   test: {
     globals: true,
