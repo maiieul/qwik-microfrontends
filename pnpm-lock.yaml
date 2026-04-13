@@ -33,6 +33,9 @@ importers:
       '@nx/workspace':
         specifier: 22.6.5
         version: 22.6.5
+      '@types/node':
+        specifier: ^25.6.0
+        version: 25.6.0
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.58.1
         version: 8.58.1(@typescript-eslint/parser@8.58.1(eslint@8.53.0)(typescript@5.2.2))(eslint@8.53.0)(typescript@5.2.2)

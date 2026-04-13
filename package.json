@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "serve:all": "npx nx run-many --parallel --target=serve --projects=host,home,checkout",
+    "serve:all": "npx nx run-many --parallel --target=serve --projects=host,remote",
     "preview:host": "npx nx run host:preview",
-    "preview:home": "npx nx run home:preview",
-    "preview:checkout": "npx nx run checkout:preview"
+    "preview:remote": "npx nx run remote:preview"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +19,7 @@
     "@nx/linter": "19.8.4",
     "@nx/vite": "22.6.5",
     "@nx/workspace": "22.6.5",
+    "@types/node": "^25.6.0",
     "@typescript-eslint/eslint-plugin": "^8.58.1",
     "@typescript-eslint/parser": "^8.58.1",
     "@vitest/ui": "^4.1.4",

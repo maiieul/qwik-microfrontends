@@ -2,21 +2,19 @@ import { qwikCity } from '@builder.io/qwik-city/vite';
 import { qwikVite } from '@builder.io/qwik/optimizer';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import remotes from './remotes.json';
-
-type RemoteEntry = { name: string; url: string };
 
 export default defineConfig(() => ({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/host',
+  base: '/remote/',
+  cacheDir: '../../node_modules/.vite/apps/remote',
   plugins: [
-    qwikCity(),
+    qwikCity({ basePathname: '/remote/' } as any),
     qwikVite({
       client: {
-        outDir: '../../dist/apps/host/client',
+        outDir: '../../dist/apps/remote/client',
       },
       ssr: {
-        outDir: '../../dist/apps/host/server',
+        outDir: '../../dist/apps/remote/server',
       },
     }),
     tsconfigPaths({ root: '../../' }),
@@ -26,19 +24,6 @@ export default defineConfig(() => ({
       // Allow serving files from the project root
       allow: ['../../'],
     },
-    proxy: Object.keys(remotes as Record<string, RemoteEntry>).reduce(
-      (prev, id) => ({
-        ...prev,
-        [`/${id}/`]: {
-          target: (remotes as Record<string, RemoteEntry>)[id].url.replace(
-            `/${id}/`,
-            ''
-          ),
-          changeOrigin: true,
-        },
-      }),
-      {} as Record<string, { target: string; changeOrigin: boolean }>
-    ),
     headers: {
       // Don't cache the server response in dev mode
       'Cache-Control': 'public, max-age=0',
