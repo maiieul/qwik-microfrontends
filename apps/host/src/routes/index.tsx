@@ -1,7 +1,7 @@
 import { $, component$, useOnDocument, useSignal } from '@builder.io/qwik';
 import { CartCounter } from '@qwik-microfrontends/ui';
 import { CART_QUANTITIES_CHANGED_EVENT } from 'shared/constants';
-import { remotes } from '../../../../shared/remotes';
+import { remotes } from 'shared/remotes';
 import RemoteMfe from '../components/remote-mfe/remote-mfe';
 
 export default component$(() => {
