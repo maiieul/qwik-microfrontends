@@ -12,9 +12,27 @@
  */
 import { renderToStream, RenderToStreamOptions } from '@builder.io/qwik/server';
 import { manifest } from '@qwik-client-manifest';
+import MfeRoot from './mfe-root';
 import Root from './root';
 
 export default function (opts: RenderToStreamOptions) {
+  const requestUrl = opts.serverData?.url as string | undefined;
+  const isMfe =
+    !!requestUrl &&
+    new URL(requestUrl).searchParams.get('loader') === 'false';
+
+  if (isMfe) {
+    return renderToStream(<MfeRoot />, {
+      manifest,
+      ...opts,
+      containerTagName: 'div',
+      containerAttributes: {
+        ...opts.containerAttributes,
+      },
+      qwikLoader: 'never',
+    });
+  }
+
   return renderToStream(<Root />, {
     manifest,
     ...opts,
